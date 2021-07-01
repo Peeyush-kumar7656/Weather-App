@@ -26,13 +26,11 @@ const Form = () => {
     const classes = useStyles();
 
     const [ city, setCity ] = useState('');
-    // const [ country, setCountry ] = useState('');
     const [ click, handleClick ] = useState(false);
     const [ data, setData ] = useState();
 
     useEffect(() => {
         const weatherInfo = async () => {
-            // city && await getData(city, country).then(response => {
                 city && await getData(city).then(response => {
                 setData(response.data);
             })
@@ -44,10 +42,6 @@ const Form = () => {
     const handleCityChange = (city) => {
         setCity(city);
     }
-
-    // const handleCountryChange = (country) => {
-    //     setCountry(country);
-    // }
     return (
         <>
      <Box className={classes.component}>
@@ -57,12 +51,6 @@ const Form = () => {
               onChange={(e) => handleCityChange(e.target.value)} 
               className={classes.input}                 
               />
-         {/* <TextField  
-        inputProps ={{className:classes.input}}
-         label="Country"
-         onChange={(e) => handleCountryChange(e.target.value)}
-         className={classes.input}
-          />  */}
           <Button variant="contained" className={classes.button} onClick={()=>handleClick(true)}>WEATHER</Button>
      </Box>
      <Information data={data} />
